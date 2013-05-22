@@ -1,7 +1,7 @@
 {% extends "reviews/base.html" %}
 
 {% block body %}
-	<h3>{{ section }}</h3>
+	<h2>{{ section }}</h2>
 	{% if reviewed == 'all_reviews' %}
     	<h4 class="reviews-list-header">All proposals</h4>
     	<p class="reviews-toggle">( see<a href="{% url user_reviewed section.section.slug %}"> reviewed</a> or <a href="{% url user_not_reviewed section.section.slug %}">not reviewed </a>)</p>
