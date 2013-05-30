@@ -12,8 +12,8 @@
             <tr>
                 <td class="time">{{ row.time|date:"h:iA" }}</td>
                 {% for slot in row.slots %}
-                    <td class="slot slot-{{ slot.kind.label }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
-                        {% if slot.kind.label == "talk" or slot.kind.label == "tutorial" %}
+                    <td class="slot slot-{{ slot.kind.label|lower }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
+                        {% if slot.kind.label|lower == "talk" or slot.kind.label|lower == "tutorial" %}
                             {% if not slot.content %}
                             {% else %}
                                 <span class="title">
@@ -27,7 +27,12 @@
                             {% if slot.content_override.raw %}
                                 {{ slot.content_override.rendered|safe }}
                             {% else %}
-                                {{ slot.kind.label }}
+                                <span class="title">
+                                    <a href="">{{ slot.content.title }}</a>
+                                </span>
+                                <span class="speaker">
+                                    {{ slot.content.speakers|join:", " }}
+                                </span>
                             {% endif %}
                         {% endif %}
                     </td>
