@@ -28,7 +28,7 @@
                                 {{ slot.content_override.rendered|safe }}
                             {% else %}
                                 <span class="title">
-                                    <a href="">{{ slot.content.title }}</a>
+                                    <a href="{% url schedule_presentation_detail slot.content.pk %}">{{ slot.content.title }}</a>
                                 </span>
                                 <span class="speaker">
                                     {{ slot.content.speakers|join:", " }}
