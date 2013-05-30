@@ -12,27 +12,19 @@
 {% block right %}
 {% endblock %}
 
-{% block body_outer %}
-    <div class="row">
-        <div class="span12">
-            <div class="page-head">
-                <h1>Conference Schedule</h1>
-                {% block breadcrumbs %}{% endblock %}
-            </div>
-        </div>
-        <div class="span12">
-            {% box "schedule_top" %}
-            
-            {% for section in sections %}
-                {% cache 600 "schedule-table" section.schedule.section %}
-                    {% for timetable in section.days %}
-                        <h3>{{ section.schedule.section.name }} — {{ timetable.day.date }}</h3>
-                        {% include "schedule/_grid.html" %}
-                    {% endfor %}
-                {% endcache %}
+{% block body %}
+    <h1>Conference Schedule</h1>
+    {% block breadcrumbs %}{% endblock %}
+    {% box "schedule_top" %}
+    
+    {% for section in sections %}
+        {% cache 600 "schedule-table" section.schedule.section %}
+            {% for timetable in section.days %}
+                <h3>{{ section.schedule.section.name }} — {{ timetable.day.date }}</h3>
+                {% include "schedule/_grid.html" %}
             {% endfor %}
-            
-            {% box "schedule_bottom" %}
-        </div>
-    </div>
+        {% endcache %}
+    {% endfor %}
+    
+    {% box "schedule_bottom" %}
 {% endblock %}
